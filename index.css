@@ -91,7 +91,7 @@ h1>span{
     margin-right: 20px;
 }
 
-#namediv,#locationdiv,#statediv,#countrydiv,#dobdiv,#initialdepositdiv{
+#namediv,#locationdiv,#statediv,#countrydiv,#dobdiv,#initialdepositdiv,#emaildiv{
     padding: 5px;
 }
 
@@ -123,8 +123,13 @@ h1>span{
     width: 180px;
 }
 
+#email{
+    margin-left: 165px;  
+    width: 180px; 
+}
 
-#openacount p{
+#openacount div > p{
     margin-left: 20px;
     color: red;
+    display: inline-block;
 }

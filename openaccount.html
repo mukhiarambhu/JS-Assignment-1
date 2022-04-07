@@ -32,6 +32,13 @@
                 <input type="text" placeholder="Enter Customer Name" id="name">
                 <p id="user_name"></p>
               </div>
+
+              <div id="emaildiv">
+                <label for="email" ><h3 style="display: inline;">email</h3></label>
+                <input type="email" placeholder="Enter Customer email" id="email">
+                <p id="user_email"></p>
+              </div>
+
               <div id="locationdiv">
                 <label for="location" ><h3 style="display: inline;">Location</h3></label>
                 <input type="text" placeholder="Enter  Location" id="location">
@@ -83,6 +90,7 @@
         }
         
         let name=document.getElementById('name').value;
+        let email=document.getElementById('email').value
         let location=document.getElementById('location').value
         let state=document.getElementById('state').value
         let country=document.getElementById('country').value
@@ -92,6 +100,119 @@
         let currentYear=todaydate.getFullYear()
         let dobYear=dob.split("-")[0]
        let age= Math.abs(currentYear-dobYear)
-       console.log(age)
+
+       //generating account Number
+     
+       let accountNumber=""
+       if(accountType=="current"){
+           accountNumber= "Curr"+Math.floor(1000000000+Math.random()*9000000000)
+       }else if(accountType=="saving"){
+        accountNumber= "Sav"+Math.floor(1000000000+Math.random()*9000000000)
+       }
+       console.log(accountNumber)
+       
+       let flag= true
+
+       //validation for account type
+
+       if(accountType==""){
+        document.getElementById('account_type').innerHTML="Select type of Account"
+        flag=false
+       }else {
+        document.getElementById('account_type').innerHTML=""
+        flag=true
+       }
+   //validation for state
+       if(name==""){
+        document.getElementById('user_name').innerHTML="Name cannot be Empty"
+        flag=false
+       }else if(name.length <3){
+        document.getElementById('user_name').innerHTML="Name require minimum 3 character"
+        flag=false
+       }else{
+           document.getElementById('user_name').innerHTML=""
+        flag=true
+       }
+ //validation for state
+       if(location==""){
+        document.getElementById('user_location').innerHTML="Location cannot be Empty"
+        flag=false
+       }else if(location.length <3){
+        document.getElementById('user_location').innerHTML="Location require minimum 3 character"
+        flag=false
+       }else{
+           document.getElementById('user_location').innerHTML=""
+        flag=true
+       }
+
+       //validation for state
+       if(state==""){
+        document.getElementById('user_state').innerHTML="state cannot be Empty"
+        flag=false
+       }else if(state.length <3){
+        document.getElementById('user_state').innerHTML="state require minimum 3 character"
+        flag=false
+       }else{
+           document.getElementById('user_state').innerHTML=""
+        flag=true
+       }
+
+
+       //validation for country
+       if(country==""){
+        document.getElementById('user_country').innerHTML="country cannot be Empty"
+        flag=false
+       }else if(country.length <3){
+        document.getElementById('user_country').innerHTML="country require minimum 3 character"
+        flag=false
+       }else{
+           document.getElementById('user_country').innerHTML=""
+        flag=true
+       }
+
+       //validation for deposit
+
+       if(accountType=="current" && initialDeposit < 800 ){
+           document.getElementById('user_initialdeposit').innerHTML="Minimum deposit is 800"
+           flag=false
+       }else if(accountType=="saving" && initialDeposit < 500){
+        document.getElementById('user_initialdeposit').innerHTML="Minimum deposit is 500"
+        flag=false
+       }else if(initialDeposit==""){
+        document.getElementById('user_initialdeposit').innerHTML="Please Deposit Money"
+        flag=false
+       }
+       else{
+        document.getElementById('user_initialdeposit').innerHTML=""
+        flag=true
+       }
+
+       //validation for age
+
+       if(age >68){
+           document.getElementById('user_age').innerHTML="You are not eligible for account opening."
+           flag=false
+       }else if(age <=0){
+        document.getElementById('user_age').innerHTML="Enter valid age"
+           flag=false
+       }else if(age ==""){
+        document.getElementById('user_age').innerHTML="Enter valid age"
+           flag=false
+       }
+       else{
+        document.getElementById('user_age').innerHTML=""
+           flag=true
+       }
+
+       //validation for email
+       
+       if(email==""){
+           document.getElementById('user_email').innerHTML="Email cannot be empty"
+           flag=false
+       }else {
+        document.getElementById('user_email').innerHTML=""
+           flag=true
+       }
+   console.log(flag)
     }
 </script>
