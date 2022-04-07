@@ -20,6 +20,9 @@
 h1>span{
     color:blue;
 }
+#nav>div>h1:hover{
+    cursor: pointer;
+}
 #nav-tab{
    margin-right: 5%;
     display: flex;
@@ -38,8 +41,6 @@ h1>span{
 }
 #menu{
     width: 70%;
-    /* height: 200px; */
-    /* border: 1px solid black; */
     margin: auto;
     margin-top: 20px;
     display: grid;
@@ -68,4 +69,62 @@ h1>span{
 .category h2:hover{
    color: blue;
    cursor: pointer;
+}
+#openacount{
+    width: 80%;
+    border: 1px solid black;
+    height: 250px;
+    margin: auto;
+    margin-top: 20px;
+}
+#radiodiv{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+#radiodiv h3{
+    padding-right: 50px;
+}
+
+#saving{
+    margin-right: 20px;
+}
+
+#namediv,#locationdiv,#statediv,#countrydiv,#dobdiv,#initialdepositdiv{
+    padding: 5px;
+}
+
+#name{
+    margin-left: 160px;
+    width: 180px;
+
+}
+#location{
+    margin-left: 135px;
+    width: 180px;
+}
+
+#state{
+    margin-left: 165px;
+    width: 180px;
+}
+#country{
+    margin-left: 135px;
+    width: 180px;
+}
+#dob{
+    margin-left: 155px;  
+    width: 180px;
+}
+
+#initialdeposit{
+    margin-left: 90px;  
+    width: 180px;
+}
+
+
+#openacount p{
+    margin-left: 20px;
+    color: red;
 }

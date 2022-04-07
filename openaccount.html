@@ -4,9 +4,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>HELLO THIS PAGE IS FOR OPENING AN ACCOUNT</h1>
+    <div id="nav">
+        <div onclick=homelocation()>  <h1>ABC<span>Bank</span></h1></div>
+          <div id="nav-tab">
+              <h3>HOME</h3>
+              <h3>ABOUT</h3>
+              <h3>SERVICES</h3>
+              <h3>CONTACT US</h3>
+          </div>
+      </div>
+      <div id="openacount">
+          <form action="" onsubmit="userdata(event)">
+              <div id="radiodiv">
+                  <h3>Select Account Type</h3>
+                  <label for="saving">SAVING </label>
+                  <input type="radio" name="account" id="saving">
+                  <label for="current">CURRENT </label>
+                  <input type="radio" name="account" id="current">
+                  <p id="account_type"></p>
+              </div>
+              <div id="namediv">
+                <label for="name" ><h3 style="display: inline;">Name</h3></label>
+                <input type="text" placeholder="Enter Customer Name" id="name">
+                <p id="user_name"></p>
+              </div>
+              <div id="locationdiv">
+                <label for="location" ><h3 style="display: inline;">Location</h3></label>
+                <input type="text" placeholder="Enter  Location" id="location">
+                <p id="user_location"></p>
+              </div>
+              <div id="statediv">
+                <label for="state" ><h3 style="display: inline;">State</h3></label>
+                <input type="text" placeholder="Enter  state" id="state">
+                <p id="user_state"></p>
+              </div>
+              <div id="countrydiv">
+                <label for="country" ><h3 style="display: inline;">Country</h3></label>
+                <input type="text" placeholder="Enter country" id="country">
+                <p id="user_country"></p>
+              </div>
+              <div id="dobdiv">
+                <label for="dob" ><h3 style="display: inline;">D.O.B</h3></label>
+                <input type="date" id="dob">
+                <p id="user_age"></p>
+              </div>
+              <div id="initialdepositdiv">
+                <label for="initialdeposit" ><h3 style="display: inline;">Initial Deposit</h3></label>
+                <input type="text" placeholder="Enter initial Deposit Amount" id="initialdeposit">
+                <p id="user_initialdeposit"></p>
+              </div>
+
+              <button type="submit">SUBMIT</button>
+          </form>
+      </div>
 </body>
 </html>
+<script>
+    function homelocation(){
+        window.location="index.html"
+    }
+    function userdata(e){
+        e.preventDefault()
+        validateform()
+    }
+
+    function validateform(){
+
+        let accountType=""
+        let radiobutton =document.querySelectorAll('input[name="account"]')
+        for(button of radiobutton){
+           if(button.checked){
+            accountType=button.id
+           }
+        }
+        
+        let name=document.getElementById('name').value;
+        let location=document.getElementById('location').value
+        let state=document.getElementById('state').value
+        let country=document.getElementById('country').value
+        let initialDeposit=document.getElementById('initialdeposit').value
+        let dob=document.getElementById('dob').value
+        let todaydate= new Date()
+        let currentYear=todaydate.getFullYear()
+        let dobYear=dob.split("-")[0]
+       let age= Math.abs(currentYear-dobYear)
+       console.log(age)
+    }
+</script>
