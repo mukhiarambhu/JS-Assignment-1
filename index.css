@@ -71,11 +71,12 @@ h1>span{
    cursor: pointer;
 }
 #openacount{
-    width: 80%;
+    width: 60%;
     border: 1px solid black;
-    height: 250px;
+    /* height: 250px; */
     margin: auto;
-    margin-top: 20px;
+    margin-top: 40px;
+   
 }
 #radiodiv{
     display: flex;
@@ -132,4 +133,26 @@ h1>span{
     margin-left: 20px;
     color: red;
     display: inline-block;
+}
+
+button[type="submit"]{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 25%;
+    width: 160px;
+    height: 35px;
+    background-color: cadetblue;
+    color: white;
+    /* border: 1px solid cadetblue; */
+}
+
+#successfulcreation{
+    position: absolute;
+    top: 260px;
+    margin-left: 10%;
+    display: none;
+}
+
+label{
+    margin-right: 10px;
 }

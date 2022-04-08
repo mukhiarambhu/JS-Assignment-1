@@ -1,218 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="nav">
-        <div onclick=homelocation()>  <h1>ABC<span>Bank</span></h1></div>
-          <div id="nav-tab">
-              <h3>HOME</h3>
-              <h3>ABOUT</h3>
-              <h3>SERVICES</h3>
-              <h3>CONTACT US</h3>
-          </div>
+      <div onclick="homelocation()">
+        <h1>ABC<span>Bank</span></h1>
       </div>
-      <div id="openacount">
-          <form action="" onsubmit="userdata(event)">
-              <div id="radiodiv">
-                  <h3>Select Account Type</h3>
-                  <label for="saving">SAVING </label>
-                  <input type="radio" name="account" id="saving">
-                  <label for="current">CURRENT </label>
-                  <input type="radio" name="account" id="current">
-                  <p id="account_type"></p>
-              </div>
-              <div id="namediv">
-                <label for="name" ><h3 style="display: inline;">Name</h3></label>
-                <input type="text" placeholder="Enter Customer Name" id="name">
-                <p id="user_name"></p>
-              </div>
-
-              <div id="emaildiv">
-                <label for="email" ><h3 style="display: inline;">email</h3></label>
-                <input type="email" placeholder="Enter Customer email" id="email">
-                <p id="user_email"></p>
-              </div>
-
-              <div id="locationdiv">
-                <label for="location" ><h3 style="display: inline;">Location</h3></label>
-                <input type="text" placeholder="Enter  Location" id="location">
-                <p id="user_location"></p>
-              </div>
-              <div id="statediv">
-                <label for="state" ><h3 style="display: inline;">State</h3></label>
-                <input type="text" placeholder="Enter  state" id="state">
-                <p id="user_state"></p>
-              </div>
-              <div id="countrydiv">
-                <label for="country" ><h3 style="display: inline;">Country</h3></label>
-                <input type="text" placeholder="Enter country" id="country">
-                <p id="user_country"></p>
-              </div>
-              <div id="dobdiv">
-                <label for="dob" ><h3 style="display: inline;">D.O.B</h3></label>
-                <input type="date" id="dob">
-                <p id="user_age"></p>
-              </div>
-              <div id="initialdepositdiv">
-                <label for="initialdeposit" ><h3 style="display: inline;">Initial Deposit</h3></label>
-                <input type="text" placeholder="Enter initial Deposit Amount" id="initialdeposit">
-                <p id="user_initialdeposit"></p>
-              </div>
-
-              <button type="submit">SUBMIT</button>
-          </form>
+      <div id="nav-tab">
+        <h3>HOME</h3>
+        <h3>ABOUT</h3>
+        <h3>SERVICES</h3>
+        <h3>CONTACT US</h3>
       </div>
-</body>
+    </div>
+    <div id="openacount">
+      <form action="" onsubmit="userdata(event)" id="form">
+        <div id="radiodiv">
+          <h3>Select Account Type</h3>
+          <label for="saving">SAVING </label>
+          <input type="radio" name="account" id="saving" />
+          <label for="current">CURRENT </label>
+          <input type="radio" name="account" id="current" />
+          <p id="account_type"></p>
+        </div>
+        <div id="namediv">
+          <label for="name"><h3 style="display: inline">Name</h3></label>
+          <input type="text" placeholder="Enter Customer Name" id="name" />
+          <p id="user_name"></p>
+        </div>
+
+        <div id="emaildiv">
+          <label for="email"><h3 style="display: inline">email</h3></label>
+          <input type="email" placeholder="Enter Customer email" id="email" />
+          <p id="user_email"></p>
+        </div>
+
+        <div id="locationdiv">
+          <label for="location"
+            ><h3 style="display: inline">Location</h3></label
+          >
+          <input type="text" placeholder="Enter  Location" id="location" />
+          <p id="user_location"></p>
+        </div>
+        <div id="statediv">
+          <label for="state"><h3 style="display: inline">State</h3></label>
+          <input type="text" placeholder="Enter  state" id="state" />
+          <p id="user_state"></p>
+        </div>
+        <div id="countrydiv">
+          <label for="country"><h3 style="display: inline">Country</h3></label>
+          <input type="text" placeholder="Enter country" id="country" />
+          <p id="user_country"></p>
+        </div>
+        <div id="dobdiv">
+          <label for="dob"><h3 style="display: inline">D.O.B</h3></label>
+          <input type="date" id="dob" />
+          <p id="user_age"></p>
+        </div>
+        <div id="initialdepositdiv">
+          <label for="initialdeposit"
+            ><h3 style="display: inline">Initial Deposit</h3></label
+          >
+          <input
+            type="text"
+            placeholder="Enter initial Deposit Amount"
+            id="initialdeposit"
+          />
+          <p id="user_initialdeposit"></p>
+        </div>
+
+        <button type="submit">CREATE ACCOUNT</button>
+      </form>
+
+      <div id="successfulcreation">
+        <h2>Your account is created successfully.</h2>
+      </div>
+    </div>
+  </body>
 </html>
 <script>
-    function homelocation(){
-        window.location="index.html"
+  function homelocation() {
+    window.location = "index.html";
+  }
+  function userdata(e) {
+    e.preventDefault();
+    validateform();
+  }
+
+  function validateform() {
+    let accountType = "";
+    let radiobutton = document.querySelectorAll('input[name="account"]');
+    for (button of radiobutton) {
+      if (button.checked) {
+        accountType = button.id;
+      }
     }
-    function userdata(e){
-        e.preventDefault()
-        validateform()
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let location = document.getElementById("location").value;
+    let state = document.getElementById("state").value;
+    let country = document.getElementById("country").value;
+    let initialDeposit = document.getElementById("initialdeposit").value;
+    let dob = document.getElementById("dob").value;
+    let todaydate = new Date();
+    let currentYear = todaydate.getFullYear();
+    let dobYear = dob.split("-")[0];
+    let age = Math.abs(currentYear - dobYear);
+
+    //generating account Number
+
+    let accountNumber = "";
+    if (accountType == "current") {
+      accountNumber =
+        "Curr" + Math.floor(1000000000 + Math.random() * 9000000000);
+    } else if (accountType == "saving") {
+      accountNumber =
+        "Sav" + Math.floor(1000000000 + Math.random() * 9000000000);
+    }
+    console.log(accountNumber);
+
+    let flag = true;
+
+    //validation for account type
+
+    if (accountType == "") {
+      document.getElementById("account_type").innerHTML =
+        "Select type of Account";
+      flag = false;
+    } else {
+      document.getElementById("account_type").innerHTML = "";
+      flag = true;
+    }
+    //validation for name
+    if (name == "") {
+      document.getElementById("user_name").innerHTML = "Name cannot be Empty";
+      flag = false;
+    } else if (name.length < 3) {
+      document.getElementById("user_name").innerHTML =
+        "Name require minimum 3 character";
+      flag = false;
+    } else {
+      document.getElementById("user_name").innerHTML = "";
+      flag = true;
     }
 
-    function validateform(){
+    //   validation for email
 
-        let accountType=""
-        let radiobutton =document.querySelectorAll('input[name="account"]')
-        for(button of radiobutton){
-           if(button.checked){
-            accountType=button.id
-           }
-        }
-        
-        let name=document.getElementById('name').value;
-        let email=document.getElementById('email').value
-        let location=document.getElementById('location').value
-        let state=document.getElementById('state').value
-        let country=document.getElementById('country').value
-        let initialDeposit=document.getElementById('initialdeposit').value
-        let dob=document.getElementById('dob').value
-        let todaydate= new Date()
-        let currentYear=todaydate.getFullYear()
-        let dobYear=dob.split("-")[0]
-       let age= Math.abs(currentYear-dobYear)
-
-       //generating account Number
-     
-       let accountNumber=""
-       if(accountType=="current"){
-           accountNumber= "Curr"+Math.floor(1000000000+Math.random()*9000000000)
-       }else if(accountType=="saving"){
-        accountNumber= "Sav"+Math.floor(1000000000+Math.random()*9000000000)
-       }
-       console.log(accountNumber)
-       
-       let flag= true
-
-       //validation for account type
-
-       if(accountType==""){
-        document.getElementById('account_type').innerHTML="Select type of Account"
-        flag=false
-       }else {
-        document.getElementById('account_type').innerHTML=""
-        flag=true
-       }
-   //validation for state
-       if(name==""){
-        document.getElementById('user_name').innerHTML="Name cannot be Empty"
-        flag=false
-       }else if(name.length <3){
-        document.getElementById('user_name').innerHTML="Name require minimum 3 character"
-        flag=false
-       }else{
-           document.getElementById('user_name').innerHTML=""
-        flag=true
-       }
- //validation for state
-       if(location==""){
-        document.getElementById('user_location').innerHTML="Location cannot be Empty"
-        flag=false
-       }else if(location.length <3){
-        document.getElementById('user_location').innerHTML="Location require minimum 3 character"
-        flag=false
-       }else{
-           document.getElementById('user_location').innerHTML=""
-        flag=true
-       }
-
-       //validation for state
-       if(state==""){
-        document.getElementById('user_state').innerHTML="state cannot be Empty"
-        flag=false
-       }else if(state.length <3){
-        document.getElementById('user_state').innerHTML="state require minimum 3 character"
-        flag=false
-       }else{
-           document.getElementById('user_state').innerHTML=""
-        flag=true
-       }
-
-
-       //validation for country
-       if(country==""){
-        document.getElementById('user_country').innerHTML="country cannot be Empty"
-        flag=false
-       }else if(country.length <3){
-        document.getElementById('user_country').innerHTML="country require minimum 3 character"
-        flag=false
-       }else{
-           document.getElementById('user_country').innerHTML=""
-        flag=true
-       }
-
-       //validation for deposit
-
-       if(accountType=="current" && initialDeposit < 800 ){
-           document.getElementById('user_initialdeposit').innerHTML="Minimum deposit is 800"
-           flag=false
-       }else if(accountType=="saving" && initialDeposit < 500){
-        document.getElementById('user_initialdeposit').innerHTML="Minimum deposit is 500"
-        flag=false
-       }else if(initialDeposit==""){
-        document.getElementById('user_initialdeposit').innerHTML="Please Deposit Money"
-        flag=false
-       }
-       else{
-        document.getElementById('user_initialdeposit').innerHTML=""
-        flag=true
-       }
-
-       //validation for age
-
-       if(age >68){
-           document.getElementById('user_age').innerHTML="You are not eligible for account opening."
-           flag=false
-       }else if(age <=0){
-        document.getElementById('user_age').innerHTML="Enter valid age"
-           flag=false
-       }else if(age ==""){
-        document.getElementById('user_age').innerHTML="Enter valid age"
-           flag=false
-       }
-       else{
-        document.getElementById('user_age').innerHTML=""
-           flag=true
-       }
-
-       //validation for email
-       
-       if(email==""){
-           document.getElementById('user_email').innerHTML="Email cannot be empty"
-           flag=false
-       }else {
-        document.getElementById('user_email').innerHTML=""
-           flag=true
-       }
-   console.log(flag)
+    if (email == "") {
+      document.getElementById("user_email").innerHTML = "Email cannot be empty";
+      flag = false;
+    } else {
+      document.getElementById("user_email").innerHTML = "";
+      flag = true;
     }
+    //validation for location
+    if (location == "") {
+      document.getElementById("user_location").innerHTML =
+        "Location cannot be Empty";
+      flag = false;
+    } else if (location.length < 3) {
+      document.getElementById("user_location").innerHTML =
+        "Location require minimum 3 character";
+      flag = false;
+    } else {
+      document.getElementById("user_location").innerHTML = "";
+      flag = true;
+    }
+
+    //validation for state
+    if (state == "") {
+      document.getElementById("user_state").innerHTML = "state cannot be Empty";
+      flag = false;
+    } else if (state.length < 3) {
+      document.getElementById("user_state").innerHTML =
+        "state require minimum 3 character";
+      flag = false;
+    } else {
+      document.getElementById("user_state").innerHTML = "";
+      flag = true;
+    }
+
+    //validation for country
+    if (country == "") {
+      document.getElementById("user_country").innerHTML =
+        "country cannot be Empty";
+      flag = false;
+    } else if (country.length < 3) {
+      document.getElementById("user_country").innerHTML =
+        "country require minimum 3 character";
+      flag = false;
+    } else {
+      document.getElementById("user_country").innerHTML = "";
+      flag = true;
+    }
+
+    //validation for age
+
+    if (age > 68) {
+      document.getElementById("user_age").innerHTML =
+        "You are not eligible for account opening.";
+      flag = false;
+    } else if (age == 0 || age == "") {
+      document.getElementById("user_age").innerHTML = "Enter valid age";
+      flag = false;
+    } else {
+      document.getElementById("user_age").innerHTML = "";
+      flag = true;
+    }
+
+    //validation for deposit
+
+    if (accountType == "current" && initialDeposit < 800) {
+      document.getElementById("user_initialdeposit").innerHTML =
+        "Minimum deposit is 800";
+      flag = false;
+    } else if (accountType == "saving" && initialDeposit < 500) {
+      document.getElementById("user_initialdeposit").innerHTML =
+        "Minimum deposit is 500";
+      flag = false;
+    } else if (initialDeposit == "") {
+      document.getElementById("user_initialdeposit").innerHTML =
+        "Please Deposit Money";
+      flag = false;
+    } else {
+      document.getElementById("user_initialdeposit").innerHTML = "";
+      flag = true;
+    }
+
+    if (localStorage.getItem("users") === null) {
+      localStorage.setItem("users", JSON.stringify([]));
+    }
+
+    if (flag == true) {
+      userdetails = {
+        accountType,
+        name,
+        email,
+        location,
+        state,
+        country,
+        initialDeposit,
+        age,
+        dob,
+        accountNumber,
+        balance:initialDeposit
+      };
+      let userAccountData = JSON.parse(localStorage.getItem("users"));
+      userAccountData.push(userdetails);
+      localStorage.setItem("users", JSON.stringify(userAccountData));
+
+      document.getElementById("form").style.display = "none";
+      document.getElementById("successfulcreation").style.display = "block";
+
+      setTimeout(() => {
+        window.location = "index.html";
+      }, 2000);
+    }
+  }
 </script>
