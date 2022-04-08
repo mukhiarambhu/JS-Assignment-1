@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="nav">
+        <div onclick=homelocation()>  <h1>ABC<span>Bank</span></h1></div>
+          <div id="nav-tab">
+              <h3>HOME</h3>
+              <h3>ABOUT</h3>
+              <h3>SERVICES</h3>
+              <h3>CONTACT US</h3>
+          </div>
+      </div>
+      <div id="withdrawlMainDiv">
+          <h2>Fill Details to Withdraw Money</h2>
+          <label for="accountNumber">Account Number:</label>
+          <input type="text" placeholder="Enter Account Number" id="accountNumber">
+          <p id="accountError"></p>
+          <br>
+          <label for="withdrawAmount">Withdrawal Amount:</label>
+          <input type="text" placeholder="Enter Amount to be withdrawn" id="withdrawAmount">
+          <p id="balanceError">you cannot withdraw the amount due to insufficient balance.</p>
+          <br>
+          <button onclick= withdraw()>Click to Withdraw</button>
+
+      </div>
+</body>
+</html>
+
+<script>
+     function homelocation() {
+    window.location = "index.html";
+  }
+
+  function withdraw(){
+      let enteredAccountNumer=document.getElementById("accountNumber").value
+      let withdrawlAmount=document.getElementById('withdrawAmount').value
+      
+      let userdata=JSON.parse( localStorage.getItem("users"))
+      let flag= false
+      for(let data of userdata){
+         if(enteredAccountNumer==data.accountNumber){
+           flag=true
+           break
+         }
+      }
+      if(flag){
+         document.getElementById("accountError").innerHTML=""
+      }else{
+        document.getElementById("accountError").innerHTML="Account doesnot exist"
+      }
+  }
+</script>

@@ -22,7 +22,7 @@
         <img src="./assets/openaccount.jpg" alt="">
         <h2>OPEN ACCOUNT</h2>
     </div>
-    <div class="category">
+    <div class="category" onclick=withdrawLocation()>
         <img src="./assets/OIP.jpg" alt="">
         <h2>WITHDRAW MONEY</h2>
     </div>
@@ -45,5 +45,9 @@
 <script>
     function locationnew(){
     window.location="openaccount.html"
+    }
+
+    function withdrawLocation(){
+        window.location='withdraw.html'
     }
 </script>

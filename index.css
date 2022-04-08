@@ -156,3 +156,53 @@ button[type="submit"]{
 label{
     margin-right: 10px;
 }
+
+#withdrawlMainDiv{
+    width: 60%;
+    margin: auto;
+    border: 1px solid black;
+    height: 250px;
+    margin-top: 40px;
+}
+
+#withdrawlMainDiv >h2{
+    padding: 15px;
+    text-decoration: underline;
+    margin-top: 15px;
+    
+}
+
+
+#withdrawlMainDiv >label{
+    padding: 15px;
+    font-size: larger;
+}
+
+#withdrawlMainDiv > input{
+    width: 25%;
+    height: 25px;
+}
+#withdrawlMainDiv  input[id="accountNumber"]{
+    margin-left: 23px;
+    margin-bottom: 20px;
+}
+
+#withdrawlMainDiv > p{
+    display: inline-block;
+    margin-left: 15px;
+    color: red;
+}
+
+#withdrawlMainDiv > button{
+    width: 25%;
+    margin-top: 20px;
+    margin-left: 22%;
+    height: 30px;
+    letter-spacing: 1px;
+    font-size: large;
+}
+
+#withdrawlMainDiv > button:hover{
+    cursor: pointer;
+    background-color: teal;
+}
