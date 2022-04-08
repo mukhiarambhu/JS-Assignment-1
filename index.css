@@ -45,6 +45,7 @@ h1>span{
     margin-top: 20px;
     display: grid;
     grid-template-columns: 30% 30% 30%;
+                            
     justify-content: center;
     align-items: center;
     grid-gap: 20px;
@@ -205,4 +206,21 @@ label{
 #withdrawlMainDiv > button:hover{
     cursor: pointer;
     background-color: teal;
+}
+
+#successMessageDiv{
+    width: 60%;
+    height: 60px;
+    /* border: 1px solid black; */
+    margin:  auto;
+    position: absolute;
+    top: 200px;
+    left: 20%;
+    text-align: center;
+    display: none;
+    
+}
+
+#successMessageDiv  h2{
+    margin-top: 20px;
 }

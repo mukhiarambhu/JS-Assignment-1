@@ -1,59 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="nav">
-        <div onclick=homelocation()>  <h1>ABC<span>Bank</span></h1></div>
-          <div id="nav-tab">
-              <h3>HOME</h3>
-              <h3>ABOUT</h3>
-              <h3>SERVICES</h3>
-              <h3>CONTACT US</h3>
-          </div>
+      <div onclick="homelocation()">
+        <h1>ABC<span>Bank</span></h1>
       </div>
-      <div id="withdrawlMainDiv">
-          <h2>Fill Details to Withdraw Money</h2>
-          <label for="accountNumber">Account Number:</label>
-          <input type="text" placeholder="Enter Account Number" id="accountNumber">
-          <p id="accountError"></p>
-          <br>
-          <label for="withdrawAmount">Withdrawal Amount:</label>
-          <input type="text" placeholder="Enter Amount to be withdrawn" id="withdrawAmount">
-          <p id="balanceError">you cannot withdraw the amount due to insufficient balance.</p>
-          <br>
-          <button onclick= withdraw()>Click to Withdraw</button>
-
+      <div id="nav-tab">
+        <h3>HOME</h3>
+        <h3>ABOUT</h3>
+        <h3>SERVICES</h3>
+        <h3>CONTACT US</h3>
       </div>
-</body>
+    </div>
+    <div id="withdrawlMainDiv">
+      <h2>Fill Details to Withdraw Money</h2>
+      <label for="accountNumber">Account Number:</label>
+      <input
+        type="text"
+        placeholder="Enter Account Number"
+        id="accountNumber"
+      />
+      <p id="accountError"></p>
+      <br />
+      <label for="withdrawAmount">Withdrawal Amount:</label>
+      <input
+        type="text"
+        placeholder="Enter Amount to be withdrawn"
+        id="withdrawAmount"
+      />
+      <p id="balanceError">
+        
+      </p>
+      <br />
+      <button onclick="withdraw()">Click to Withdraw</button>
+    </div>
+    <div id="successMessageDiv">
+        <h2>Your Transection is Successful ,Please Collect Your Money </h2>
+    </div>
+  </body>
 </html>
 
 <script>
-     function homelocation() {
+  function homelocation() {
     window.location = "index.html";
   }
 
-  function withdraw(){
-      let enteredAccountNumer=document.getElementById("accountNumber").value
-      let withdrawlAmount=document.getElementById('withdrawAmount').value
-      
-      let userdata=JSON.parse( localStorage.getItem("users"))
-      let flag= false
-      for(let data of userdata){
-         if(enteredAccountNumer==data.accountNumber){
-           flag=true
-           break
-         }
+  function withdraw() {
+    let enteredAccountNumer = document.getElementById("accountNumber").value;
+    let withdrawlAmount = document.getElementById("withdrawAmount").value;
+
+    let userdata = JSON.parse(localStorage.getItem("users"));
+    let flag = false;
+    let availableBalance;
+    for (let data of userdata) {
+      if (enteredAccountNumer == data.accountNumber) {
+        availableBalance = data.balance;
+        flag = true;
+        break;
       }
-      if(flag){
-         document.getElementById("accountError").innerHTML=""
-      }else{
-        document.getElementById("accountError").innerHTML="Account doesnot exist"
-      }
+    }
+    if (flag) {
+      document.getElementById("accountError").innerHTML = "";
+    }else if(enteredAccountNumer==""){
+        document.getElementById("accountError").innerHTML =
+        "Enter Account Number";
+    } else {
+      document.getElementById("accountError").innerHTML =
+        "Account doesnot exist";
+    } 
+    
+    if(withdrawlAmount==""){
+        document.getElementById("balanceError").innerHTML =
+        "Enter Amount to be withdrawn.";
+    }
+    else if (flag && availableBalance < withdrawlAmount) {
+      document.getElementById("balanceError").innerHTML =
+        "you cannot withdraw the amount due to insufficient balance.";
+    }else if(flag && withdrawlAmount<availableBalance){
+     
+       let local_data=JSON.parse(localStorage.getItem("users"));
+       for(let data of local_data ){
+           if(data.accountNumber==enteredAccountNumer){
+              data.balance= data.balance-withdrawlAmount
+              break
+           }
+       }
+       localStorage.setItem('users',JSON.stringify(local_data))
+
+       document.getElementById('withdrawlMainDiv').style.display='none'
+       document.getElementById('successMessageDiv').style.display='block'
+
+       setTimeout(()=>{
+           window.location="index.html"
+       },7000)
+    }
   }
 </script>
