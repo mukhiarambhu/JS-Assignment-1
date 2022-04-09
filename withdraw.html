@@ -66,15 +66,17 @@
         break;
       }
     }
-    if (flag) {
-      document.getElementById("accountError").innerHTML = "";
-    }else if(enteredAccountNumer==""){
-        document.getElementById("accountError").innerHTML =
-        "Enter Account Number";
-    } else {
-      document.getElementById("accountError").innerHTML =
-        "Account doesnot exist";
-    } 
+    // if (flag) {
+    //   document.getElementById("accountError").innerHTML = "";
+    // }else if(enteredAccountNumer==""){
+    //     document.getElementById("accountError").innerHTML =
+    //     "Enter Account Number";
+    // } else {
+    //   document.getElementById("accountError").innerHTML =
+    //     "Account doesnot exist";
+    // } 
+    flag ? document.getElementById("accountError").innerHTML = "":enteredAccountNumer=="" ? document.getElementById("accountError").innerHTML = "Enter Account Number":document.getElementById("accountError").innerHTML =
+     "Account doesnot exist"
     
     if(withdrawlAmount==""){
         document.getElementById("balanceError").innerHTML =
@@ -99,7 +101,7 @@
 
        setTimeout(()=>{
            window.location="index.html"
-       },7000)
+       },5000)
     }
   }
 </script>

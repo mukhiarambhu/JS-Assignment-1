@@ -158,7 +158,7 @@ label{
     margin-right: 10px;
 }
 
-#withdrawlMainDiv{
+#withdrawlMainDiv,#depositmaindiv{
     width: 60%;
     margin: auto;
     border: 1px solid black;
@@ -166,7 +166,7 @@ label{
     margin-top: 40px;
 }
 
-#withdrawlMainDiv >h2{
+#withdrawlMainDiv >h2,#depositmaindiv>h2{
     padding: 15px;
     text-decoration: underline;
     margin-top: 15px;
@@ -174,12 +174,12 @@ label{
 }
 
 
-#withdrawlMainDiv >label{
+#withdrawlMainDiv >label,#depositmaindiv>label{
     padding: 15px;
     font-size: larger;
 }
 
-#withdrawlMainDiv > input{
+#withdrawlMainDiv > input,#depositmaindiv >input{
     width: 25%;
     height: 25px;
 }
@@ -223,4 +223,10 @@ label{
 
 #successMessageDiv  h2{
     margin-top: 20px;
+}
+
+#balanceShow{
+    margin-left: 20%;
+    margin-top: 5px;
+    color: green;
 }

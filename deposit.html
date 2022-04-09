@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="nav">
+      <div onclick="homelocation()">
+        <h1>ABC<span>Bank</span></h1>
+      </div>
+      <div id="nav-tab">
+        <h3>HOME</h3>
+        <h3>ABOUT</h3>
+        <h3>SERVICES</h3>
+        <h3>CONTACT US</h3>
+      </div>
+    </div>
+    <div id="depositmaindiv">
+      <h2>Fill in details to Deposit Money</h2>
+      <label for="enteredAccountNumber">Account Number:</label>
+      <input
+        type="text"
+        placeholder="Enter Account Number"
+        oninput="debounce(showbalance,1000)"
+        id="enteredAccountNumber"
+      />
+      <h3 id="balanceShow"></h3>
+    </div>
+  </body>
+</html>
+
+<script>
+  let timerid;
+  function showbalance() {
+    let enteredAccount = document.getElementById("enteredAccountNumber").value;
+
+    let local_data = JSON.parse(localStorage.getItem("users"));
+
+    let flag = false;
+    let Availablebalance;
+    for (data of local_data) {
+      if (data.accountNumber == enteredAccount) {
+        Availablebalance = data.balance;
+        flag=true;
+        break
+      }
+    }
+    console.log(flag, Availablebalance);
+    flag
+      ? (document.getElementById(
+          "balanceShow"
+        ).innerHTML = `Your Available Balance is ${Availablebalance}`)
+      : (document.getElementById("balanceShow").innerHTML =
+          "Please Enter Correct Account Number");
+  }
+
+  function debounce(func, delay) {
+    if (timerid) {
+      clearTimeout(timerid);
+    }
+    timerid = setTimeout(() => {
+      func();
+    }, delay);
+  }
+</script>
