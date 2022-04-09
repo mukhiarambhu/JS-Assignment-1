@@ -29,28 +29,44 @@
         id="enteredAccountNumber"
       />
       <h3 id="balanceShow"></h3>
+      <label for="depositAmount">Deposit Amounts:</label>
+      <input
+        type="text"
+        placeholder="Enter Amount to be deposited"
+        id="depositAmount"
+        oninput="depositAmoutLength()"
+      />
+      <br />
+      <button id="depositButton" onclick="deposit()">DEPOSIT</button>
+    </div>
+
+    <div id="alertDiv">
+      <h2 id="msddiv1"></h2>
+      <h2 id="msddiv2"></h2>
     </div>
   </body>
 </html>
 
 <script>
   let timerid;
+  let flag = false;
+  let local_data = JSON.parse(localStorage.getItem("users"));
+  document.getElementById('depositButton').disabled=true
   function showbalance() {
     let enteredAccount = document.getElementById("enteredAccountNumber").value;
-
-    let local_data = JSON.parse(localStorage.getItem("users"));
-
-    let flag = false;
+    
     let Availablebalance;
     for (data of local_data) {
       if (data.accountNumber == enteredAccount) {
         Availablebalance = data.balance;
-        flag=true;
-        break
+        flag = true;
+        break;
       }
     }
     console.log(flag, Availablebalance);
-    flag
+    enteredAccount.length == 0
+      ? (document.getElementById("balanceShow").innerHTML = "")
+      : flag
       ? (document.getElementById(
           "balanceShow"
         ).innerHTML = `Your Available Balance is ${Availablebalance}`)
@@ -65,5 +81,36 @@
     timerid = setTimeout(() => {
       func();
     }, delay);
+  }
+
+  function depositAmoutLength(){
+    if(document.getElementById("depositAmount").value.length>3 && flag){
+      document.getElementById('depositButton').disabled=false
+    }
+  }
+
+
+  //functionality to deposit
+  function deposit() {
+    let enterAccount = document.getElementById("enteredAccountNumber").value;
+    let amoutDeposited = document.getElementById("depositAmount").value;
+
+    
+    for (data of local_data) {
+      if (data.accountNumber == enterAccount) {
+        data.balance = +data.balance + +amoutDeposited;
+
+        localStorage.setItem("users", JSON.stringify(local_data));
+
+        document.getElementById("depositmaindiv").style.display = "none";
+        document.getElementById("msddiv1").innerHTML=`Rs ${amoutDeposited} deposited to your account.`;
+        document.getElementById("msddiv2").innerHTML=`Total balance is ${data.balance}`;
+        document.getElementById("alertDiv").style.display = "block";
+      }
+    }
+    
+    setTimeout(()=>{
+      window.location='index.html'
+    },8000)
   }
 </script>
