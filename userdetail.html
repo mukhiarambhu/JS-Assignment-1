@@ -22,55 +22,88 @@
     <div id="userDetailDiv">
       <h2>USER DETAILS</h2>
       <label for="enteredAccount"> <p>Enter Account Number:</p></label>
-      <input type="text"  id="enteredAccount" placeholder="Enter Account NUmber" oninput="debounce(getDetail,1000)">
-      <p id="userError">Hello</p>
+      <input
+        type="text"
+        id="enteredAccount"
+        placeholder="Enter Account NUmber"
+        oninput="debounce(getDetail,1000)"
+      />
+      <p id="userError"></p>
 
-      <h4 id="username">Customer Name:</h4>
-      <h4 id="useremail">Email ID</h4>
-      <h4 id="typeofaccount">Type Of Account</h4>
-      <h4 id="totalbalance">Total Balance</h4>
+      <div id="infodiv">
+        <div id="leftdiv">
+          <h4>Customer Name:</h4>
+          <h4>Email ID:</h4>
+          <h4>Type Of Account:</h4>
+          <h4>Total Balance:</h4>
+        </div>
+        <div id="rightdiv">
+          <h4 id="username"></h4>
+          <h4 id="useremail"></h4>
+          <h4 id="typeofaccount"></h4>
+          <h4 id="totalbalance"></h4>
+        </div>
+      </div>
+      <br />
+      <button id="detailButton" onclick="display()">GET DETAILS</button>
+      <br>
+      <button id="gohomeButton" onclick="homelocation()">GO BACK</button>
     </div>
   </body>
 </html>
 
 <script>
+  let flag = false;
+  let name, emailid, typeofAccount, totalBalance, timerId;
+  document.getElementById("detailButton").disabled = true;
 
-    let timerId;
-    let flag=false
-
-    function debounce(func,delay){
-  
-        if(timerId){
-            clearTimeout(timerId)
-        }
-
-        timerId=setTimeout(()=>{
-            func()
-        },delay)
-    }
-    
-    getDetail=()=>{
-       let userData = JSON.parse(localStorage.getItem('users'))
-       let enteredAccount= document.getElementById('enteredAccount').value
-       let name,emailid,typeofAccount,totalBalance
-      
-       for(let data of userData){
-           if(enteredAccount==data.accountNumber){
-               name=data.name
-               emailid=data.email
-               typeofAccount=data.accountType
-               totalBalance=data.balance
-               flag=true
-               break
-           }
-       }
-       console.log(name,emailid,typeofAccount,totalBalance)
-      
-       
-      
+  function debounce(func, delay) {
+    if (timerId) {
+      clearTimeout(timerId);
     }
 
-    homelocation=()=>{
-        window.location='index.html'
+    timerId = setTimeout(() => {
+      func();
+    }, delay);
+  }
+
+  getDetail = () => {
+    let userData = JSON.parse(localStorage.getItem("users"));
+    let enteredAccount = document.getElementById("enteredAccount").value;
+
+    for (let data of userData) {
+      if (enteredAccount == data.accountNumber) {
+        name = data.name;
+        emailid = data.email;
+        typeofAccount = data.accountType;
+        totalBalance = data.balance;
+        flag = true;
+        break;
+      } else {
+        flag = false;
+      }
     }
+    display();
+  };
+
+  function display() {
+    flag
+      ? ((document.getElementById("username").innerHTML = `${name}`),
+        (document.getElementById("useremail").innerHTML = `${emailid}`),
+        (document.getElementById(
+          "typeofaccount"
+        ).innerHTML = `${typeofAccount}`),
+        (document.getElementById("totalbalance").innerHTML = `${totalBalance}`),
+        (document.getElementById("infodiv").style.display = "flex"),
+        (document.getElementById("detailButton").style.display = "none"),
+        (document.getElementById("userError").innerHTML = ""),(document.getElementById("gohomeButton").style.display = "block"))
+      : ((document.getElementById("userError").innerHTML =
+          "Account doesnot Exist,Check account Number"),
+        (document.getElementById("infodiv").style.display = "none"),
+        (document.getElementById("detailButton").disabled = true),
+        (document.getElementById("detailButton").style.display = "block"),(document.getElementById("gohomeButton").style.display = "none"));
+  }
+  homelocation = () => {
+    window.location = "index.html";
+  };
 </script>
