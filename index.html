@@ -32,7 +32,7 @@
         <h2>DEPOSIT MONEY</h2>
     </div>
     <div class="category">
-        <img src="./assets/checkbalance.jpg" alt="">
+        <img src="./assets/checkbalance.jpg" onclick=balanceCheck()>
         <h2>CHECK BALANCE</h2>
     </div>
     <div class="category">
@@ -53,5 +53,9 @@
 
     function depositMoney(){
         window.location="deposit.html"
+    }
+
+    function balanceCheck(){
+        window.location='checkbalance.html'
     }
 </script>

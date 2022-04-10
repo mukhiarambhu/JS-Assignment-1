@@ -158,7 +158,7 @@ label{
     margin-right: 10px;
 }
 
-#withdrawlMainDiv,#depositmaindiv{
+#withdrawlMainDiv,#depositmaindiv,#mainDiv{
     width: 60%;
     margin: auto;
     border: 1px solid black;
@@ -166,7 +166,7 @@ label{
     margin-top: 40px;
 }
 
-#withdrawlMainDiv >h2,#depositmaindiv>h2{
+#withdrawlMainDiv >h2,#depositmaindiv>h2,#mainDiv>h2{
     padding: 15px;
     text-decoration: underline;
     margin-top: 15px;
@@ -174,12 +174,12 @@ label{
 }
 
 
-#withdrawlMainDiv >label,#depositmaindiv>label{
+#withdrawlMainDiv >label,#depositmaindiv>label,#mainDiv>label{
     padding: 15px;
     font-size: larger;
 }
 
-#withdrawlMainDiv > input,#depositmaindiv >input{
+#withdrawlMainDiv > input,#depositmaindiv >input,#mainDiv>input{
     width: 25%;
     height: 25px;
 }
@@ -188,7 +188,7 @@ label{
     margin-bottom: 20px;
 }
 
-#withdrawlMainDiv > p{
+#withdrawlMainDiv > p, #mainDiv >p{
     display: inline-block;
     margin-left: 15px;
     color: red;
@@ -203,15 +203,29 @@ label{
     font-size: large;
 }
 
+#balanceButton{
+    width: 25%;
+    margin-top: 20px;
+    margin-left: 28%;
+    height: 30px;
+    letter-spacing: 1px;
+    font-size: large;
+}
+
+#balanceButton:hover{
+    cursor: pointer;
+    background-color: teal;
+}
+
 #withdrawlMainDiv > button:hover{
     cursor: pointer;
     background-color: teal;
 }
 
-#successMessageDiv{
+#successMessageDiv ,#balanceAlert{
     width: 60%;
     height: 60px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
     margin:  auto;
     position: absolute;
     top: 200px;
@@ -221,7 +235,7 @@ label{
     
 }
 
-#successMessageDiv  h2{
+#successMessageDiv  h2,#balanceAlerth2{
     margin-top: 20px;
 }
 
@@ -253,4 +267,8 @@ label{
 #alertDiv{
     text-align: center;
     margin-top: 80px;
+}
+
+#mainDiv > input[id="name"]{
+    margin-left: 40px;
 }

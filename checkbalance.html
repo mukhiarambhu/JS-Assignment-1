@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="nav">
+      <div onclick="homelocation()">
+        <h1>ABC<span>Bank</span></h1>
+      </div>
+      <div id="nav-tab">
+        <h3>HOME</h3>
+        <h3>ABOUT</h3>
+        <h3>SERVICES</h3>
+        <h3>CONTACT US</h3>
+      </div>
+    </div>
+    <div id="mainDiv">
+      <h2>Enter Detail to Check Balance</h2>
+      <label for="enteredName">Enter Accountholder Name:</label>
+      <input
+        type="text"
+        placeholder="Enter Account holder Name"
+        id="enteredName"
+        oninput="debounce(findName,1000)"
+      />
+      <p id="nameError"></p>
+      <button id="balanceButton" onclick="showBalance()">CHECK BALANCE</button>
+    </div>
+    <div id="balanceAlert">
+      <h2 id="balanceAlerth2"></h2>
+    </div>
+  </body>
+</html>
+<script>
+  let timerId;
+  let AvailableBalance;
+  let flag = false;
+  document.getElementById("balanceButton").disabled = true;
+  homelocation = () => {
+    window.location = "index.html";
+  };
+
+  function debounce(func, delay) {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+
+    timerId = setTimeout(() => {
+      func();
+    }, delay);
+  }
+
+  function findName() {
+    let local_data = JSON.parse(localStorage.getItem("users"));
+    let enteredName = document.getElementById("enteredName").value;
+
+    for (data of local_data) {
+      AvailableBalance = data.balance;
+      if (enteredName.toLowerCase() == data.name.toLowerCase()) {
+        flag = true;
+        break;
+      } else {
+        flag = false;
+      }
+    }
+    flag
+      ? ((document.getElementById("balanceButton").disabled = false),
+        (document.getElementById("nameError").innerHTML = ""))
+      : ((document.getElementById("balanceButton").disabled = true),
+        (document.getElementById("nameError").innerHTML =
+          "User doesnot Exist,Enter Correct User"));
+    console.log(flag);
+  }
+
+  showBalance = () => {
+    document.getElementById(
+      "balanceAlerth2"
+    ).innerHTML = `Your Current Balance is Rs.${AvailableBalance}`;
+
+    document.getElementById("mainDiv").style.display = "none";
+    document.getElementById("balanceAlert").style.display = "block";
+
+    setTimeout(() => {
+      window.location = "index.html";
+    }, 8000);
+  };
+</script>
