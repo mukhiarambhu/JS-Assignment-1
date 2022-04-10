@@ -64,8 +64,8 @@
       if (enteredName.toLowerCase() == data.name.toLowerCase()) {
         flag = true;
         break;
-      } else {
-        flag = false;
+      }else{
+          flag=false
       }
     }
     flag
@@ -74,7 +74,7 @@
       : ((document.getElementById("balanceButton").disabled = true),
         (document.getElementById("nameError").innerHTML =
           "User doesnot Exist,Enter Correct User"));
-    console.log(flag);
+          
   }
 
   showBalance = () => {

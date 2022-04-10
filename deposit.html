@@ -61,9 +61,11 @@
         Availablebalance = data.balance;
         flag = true;
         break;
+      }else{
+        flag=false
       }
     }
-    console.log(flag, Availablebalance);
+    
     enteredAccount.length == 0
       ? (document.getElementById("balanceShow").innerHTML = "")
       : flag
