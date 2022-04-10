@@ -272,3 +272,42 @@ label{
 #mainDiv > input[id="name"]{
     margin-left: 40px;
 }
+
+#userDetailDiv{
+    width: 80%;
+    border: 1px solid black;
+    height: 120px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+#userDetailDiv > h2{
+    padding: 10px;
+    text-decoration: underline;
+}
+
+#userDetailDiv > label p{
+    font-size: 20px;
+    padding-left: 15px;
+    margin-top: 15px;
+    display: inline;
+}
+#enteredAccount{
+width: 20%;
+height: 20px;
+}
+#userError{
+    display: inline;
+    margin-left: 10px;
+    color: red
+}
+
+#userDetailDiv > h4{
+    margin-left: 10px;
+    
+}
+
+#userDetailDiv > h4:nth-child(1){
+    
+    margin-top: 20px;
+}
