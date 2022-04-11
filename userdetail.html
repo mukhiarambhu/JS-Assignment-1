@@ -45,8 +45,8 @@
         </div>
       </div>
       <br />
-      <button id="detailButton" onclick="display()">GET DETAILS</button>
-      <br>
+      <button id="detailButton" onclick="show()">GET DETAILS</button>
+      <br />
       <button id="gohomeButton" onclick="homelocation()">GO BACK</button>
     </div>
   </body>
@@ -94,15 +94,23 @@
           "typeofaccount"
         ).innerHTML = `${typeofAccount}`),
         (document.getElementById("totalbalance").innerHTML = `${totalBalance}`),
-        (document.getElementById("infodiv").style.display = "flex"),
-        (document.getElementById("detailButton").style.display = "none"),
-        (document.getElementById("userError").innerHTML = ""),(document.getElementById("gohomeButton").style.display = "block"))
+        (document.getElementById("detailButton").disabled = false),
+        (document.getElementById("userError").innerHTML = "")
+        )
       : ((document.getElementById("userError").innerHTML =
           "Account doesnot Exist,Check account Number"),
         (document.getElementById("infodiv").style.display = "none"),
         (document.getElementById("detailButton").disabled = true),
-        (document.getElementById("detailButton").style.display = "block"),(document.getElementById("gohomeButton").style.display = "none"));
+        (document.getElementById("detailButton").style.display = "block"),
+        (document.getElementById("gohomeButton").style.display = "none"));
   }
+
+  show = () => {
+    document.getElementById("infodiv").style.display = "flex";
+    (document.getElementById("gohomeButton").style.display = "block")
+    (document.getElementById("detailButton").style.display= 'none')
+  };
+
   homelocation = () => {
     window.location = "index.html";
   };
