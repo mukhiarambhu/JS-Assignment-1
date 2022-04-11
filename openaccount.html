@@ -113,6 +113,7 @@
     let currentYear = todaydate.getFullYear();
     let dobYear = dob.split("-")[0];
     let age = Math.abs(currentYear - dobYear);
+    let pattern= /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i
 
     //generating account Number
 
@@ -156,9 +157,12 @@
     if (email == "") {
       document.getElementById("user_email").innerHTML = "Email cannot be empty";
       flag = false;
-    } else {
+    }else if(pattern.test(email)){
       document.getElementById("user_email").innerHTML = "";
-      flag = true;
+      flag=true
+    } else {
+      document.getElementById("user_email").innerHTML = "Enter Valid Email";
+      flag = false;
     }
     //validation for location
     if (location == "") {
